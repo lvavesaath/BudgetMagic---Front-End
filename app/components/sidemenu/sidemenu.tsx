@@ -7,34 +7,48 @@ import {
 	FolderIcon,
 	HomeIcon,
 	UsersIcon,
+	CurrencyEuroIcon,
 } from '@heroicons/react/24/outline';
 
+import Logo from '../../assets/logo.png';
+
 const navigation = [
-	{ name: 'Dashboard', href: '#', icon: HomeIcon, current: false },
 	{
-		name: 'Teams',
+		type: 'title',
+		name: 'Dashboard',
+		href: '#',
+		icon: HomeIcon,
+		current: false,
+	},
+	{
+		name: 'Users',
 		icon: UsersIcon,
 		current: false,
-		children: [
-			{ name: 'Engineering', href: '#' },
-			{ name: 'Human Resources', href: '#' },
-			{ name: 'Customer Success', icon: UsersIcon, href: '#' },
-		],
+		href: '#',
 	},
 	{
-		name: 'Projects',
+		name: 'Begrotingen',
+		icon: CurrencyEuroIcon,
+		current: false,
+		href: '#',
+	},
+	{
+		name: 'Datasets',
 		icon: FolderIcon,
+		href: '#',
 		current: false,
 		children: [
-			{ name: 'GraphQL API', icon: UsersIcon, href: '#' },
-			{ name: 'iOS App', icon: UsersIcon, href: '#' },
-			{ name: 'Android App', icon: UsersIcon, href: '#' },
-			{ name: 'New Customer Portal', icon: UsersIcon, href: '#' },
+			{ name: 'Kostenplaatsen', href: '#' },
+			{ name: 'Rekeningen', href: '#' },
+			{ name: 'Seizoenspatronen', icon: UsersIcon, href: '#' },
+			{ name: 'Productietarieven', icon: UsersIcon, href: '#' },
+			{ name: 'Functies', icon: UsersIcon, href: '#' },
+			{ name: 'Bruto-netto-factoren', icon: UsersIcon, href: '#' },
+			{ name: 'Norminschalingen', icon: UsersIcon, href: '#' },
+			{ name: 'Normsalarissen', icon: UsersIcon, href: '#' },
+			{ name: 'Loonjournalisering', icon: UsersIcon, href: '#' },
 		],
 	},
-	{ name: 'Calendar', href: '#', icon: CalendarIcon, current: false },
-	{ name: 'Documents', href: '#', icon: DocumentDuplicateIcon, current: false },
-	{ name: 'Reports', href: '#', icon: ChartPieIcon, current: false },
 ];
 
 function classNames(...classes) {
@@ -43,11 +57,11 @@ function classNames(...classes) {
 
 export function Example() {
 	return (
-		<div className='relative flex grow flex-col  gap-y-5 overflow-y-auto border-r border-gray-200 bg-white px-6'>
+		<div className='relative flex h-svh w-3xs flex-col  grow gap-y-5 overflow-y-auto border-r border-gray-200 bg-white px-6'>
 			<div className='relative flex h-16 shrink-0 items-center'>
 				<img
-					alt='Your Company'
-					src='https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=600'
+					alt='Budget Magic'
+					src={Logo}
 					className='h-8 w-auto'
 				/>
 			</div>
@@ -74,8 +88,9 @@ export function Example() {
 											/>
 											{item.name}
 										</a>
-									:	<Disclosure as='div'>
-											<DisclosureButton
+									:	<div>
+											<a
+												href={item.href}
 												className={classNames(
 													item.current ? 'bg-gray-50' : 'hover:bg-gray-50',
 													'group flex w-full items-center gap-x-3 rounded-md p-2 text-left text-sm/6 font-semibold text-gray-700',
@@ -85,30 +100,25 @@ export function Example() {
 													className='size-6 shrink-0 text-gray-400'
 												/>
 												{item.name}
-												<ChevronRightIcon
-													aria-hidden='true'
-													className='ml-auto size-5 shrink-0 text-gray-400 group-data-open:rotate-90 group-data-open:text-gray-500'
-												/>
-											</DisclosureButton>
-											<DisclosurePanel
+											</a>
+											<div
 												as='ul'
 												className='mt-1 px-2'>
 												{item.children.map((subItem) => (
 													<li key={subItem.name}>
 														{/* 44px */}
-														<DisclosureButton
-															as='a'
+														<a
 															href={subItem.href}
 															className={classNames(
 																subItem.current ? 'bg-gray-50' : 'hover:bg-gray-50',
 																'block rounded-md py-2 pr-2 pl-9 text-sm/6 text-gray-700',
 															)}>
 															{subItem.name}
-														</DisclosureButton>
+														</a>
 													</li>
 												))}
-											</DisclosurePanel>
-										</Disclosure>
+											</div>
+										</div>
 									}
 								</li>
 							))}
@@ -124,7 +134,7 @@ export function Example() {
 								className='size-8 rounded-full bg-gray-50 outline -outline-offset-1 outline-black/5'
 							/>
 							<span className='sr-only'>Your profile</span>
-							<span aria-hidden='true'>Tom Cook</span>
+							<span aria-hidden='true'>Leonard van Avesaath</span>
 						</a>
 					</li>
 				</ul>
